@@ -60,7 +60,7 @@ Now you can start catching process using arguments*.
    ``` shell
    $ npm start trycatch -- \
       --chain-id columbus-5 \
-      --lcd https://terra-lcd.easy2stake.com/ \
+      --lcd https://terra-lcd.easy2stake.com \
 	  --lcd https://lcd.terra.dev \
       --target-account terra1yxABCDEFGH  \
       --password "<password>"  	  
