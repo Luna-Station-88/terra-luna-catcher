@@ -37,7 +37,7 @@ cd terra-luna-catcher
 npm install
 ```
 
-2. Create an access key for the source wallet from your mnemonic phrase
+3. Create an access key for the source wallet from your mnemonic phrase
 
 To access the wallet and make a transfer, the code needs a mnemonic phrase, this phrase will be encrypted with the password you specify.
 You will need this password to run the script.
@@ -52,7 +52,7 @@ saved!
 ✨  Done in 9.19s.
 ```
 
-3. Catching the Luna
+4. Catching the Luna
 
 Now you can start catching process using arguments*.
 
