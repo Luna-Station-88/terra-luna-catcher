@@ -1,7 +1,7 @@
-import * as keystore from './keystore'
-import * as promptly from 'promptly'
+import * as promptly from 'promptly';
+import * as keystore from './keystore';
 
-export async function updateKey(filePath: string): Promise<void> {
+export async function updateKey(filePath: string, keyName: string): Promise<void> {
     let password = process.env['PASSPHRASE'] || '';
     let mnemonic = process.env['MNEMONIC'] || '';
 
@@ -31,6 +31,6 @@ export async function updateKey(filePath: string): Promise<void> {
         return;
     }
 
-    await keystore.save(filePath, 'sourceWallet', password, mnemonic);
+    await keystore.save(filePath, keyName, password, mnemonic);
     console.info(`saved!`);
 }

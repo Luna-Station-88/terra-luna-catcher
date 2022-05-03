@@ -9,11 +9,11 @@ YOU USE THE SOURCE CODE AT YOUR OWN RISK. YOU ACKNOWLEDGE AND AGREE THAT YOU ARE
 ## Overview
 
 This code periodically checks the balance (LUNA token only) of the source wallet for which you have a mnemonic phrase. If an amount equal to 1 Luna or more appears on the source wallet, then the code automatically and unconditionally transfers almost the entire amount to the target wallet that was specified at the start of this script.
-The main source of inspiration was ([this code](https://github.com/terra-money/oracle-feeder)). 
+The main source of inspiration was ([this code](https://github.com/terra-money/oracle-feeder)).
 
 ### WARNING
 
-The script does not check that the target wallet belongs to you, therefore, when you run the script, ALWAYS check the address of the target wallet. 
+The script does not check that the target wallet belongs to you, therefore, when you run the script, ALWAYS check the address of the target wallet.
 We are NOT RESPONSIBLE if the script sends money to the wrong address.
 We recommend that you check the script by sending a small amount to the source wallet to make sure that the transfer is being made to the target wallet you need.
 
@@ -61,16 +61,21 @@ Now you can start catching process using arguments*.
    $ npm start trycatch -- \
       --chain-id columbus-5 \
       --lcd https://terra-lcd.easy2stake.com \
-	  --lcd https://lcd.terra.dev \
+	   --lcd https://lcd.terra.dev \
       --target-account terra1yxABCDEFGH  \
-      --password "<password>"  	  
+      --password "<password>"
    ```
 
 * Arguments
-   
+
 | Argument    | Description                                       | Example                      |
 | ----------- | ------------------------------------------------  | ---------------------------- |
 | `target-account`  | Target wallet address                       | terra1j27nm2gjm0m4lsye8lspa46rax0rw4fge9awrs |
 | `lcd`       |  LCD server URL (can be multiple)                 | https://lcd.terra.dev        |
 | `chain-id`  |  Chain ID.                                        | `columbus-5` or `bombay-12`               |
 | `password`  | Password for mnemonic (assigned in step #2)       | `12345678`                   |
+| `fee`  | The fee for the transaction (in Luna). Defaults to 0.1      | `0.5`                   |
+| `wait-interval`  | The number of seconds between transfer attempts. Defaults to 2      | `1`                   |
+| `key-path`  | The path to the file where the key is stored. Defaults to sourceWallet.json      | `myKey.json`                   |
+| `key-name`  | The name of the key. Defaults to sourceWallet      | `myKey`                   |
+

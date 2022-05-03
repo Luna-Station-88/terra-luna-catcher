@@ -36,7 +36,7 @@ function registerCommands(parser: ArgumentParser): void {
         required: true,
         dest: 'targetAccount',
     });
-    
+
     tryCatchCommand.add_argument(`--password`, {
         action: `store`,
         help: `encrypted key password`,
@@ -50,8 +50,29 @@ function registerCommands(parser: ArgumentParser): void {
         required: false,
     });
 
+    tryCatchCommand.add_argument('--key-name', {
+        help: `name of the key`,
+        dest: `keyName`,
+        default: `sourceWallet`,
+    });
+
+    tryCatchCommand.add_argument('--fee', {
+        action: 'store',
+        help: 'the transaction fee',
+        dest: 'fee',
+        required: false,
+        default: 0.1,
+    });
+    tryCatchCommand.add_argument('--wait-interval', {
+        action: 'store',
+        help: 'the number of seconds between transfer attempts',
+        dest: 'waitInterval',
+        required: false,
+        default: 2,
+    });
+
     tryCatchCommand.add_argument('-v', '--version', { action: 'version', version: packageInfo.version });
-    
+
     // Updating Key command
     const keyCommand = subparsers.add_parser(`update-key`, { add_help: true });
 
@@ -59,6 +80,11 @@ function registerCommands(parser: ArgumentParser): void {
         help: `key store path to save encrypted key`,
         dest: `keyPath`,
         default: `sourceWallet.json`,
+    });
+    keyCommand.add_argument('--key-name', {
+        help: `name of the key`,
+        dest: `keyName`,
+        default: `sourceWallet`,
     });
 }
 
@@ -70,7 +96,7 @@ async function main(): Promise<void> {
 
     registerCommands(parser);
     const args = parser.parse_args();
-    
+
     if (args.subparser_name === `trycatch`) {
 
         if (args.lcdAddress.length === 0) {
@@ -93,7 +119,7 @@ async function main(): Promise<void> {
 
         await lunaCatcher(args);
     } else if (args.subparser_name === `update-key`) {
-        await updateKey(args.keyPath);
+        await updateKey(args.keyPath, args.keyName);
     }
 }
 

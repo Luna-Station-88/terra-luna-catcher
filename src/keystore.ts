@@ -68,7 +68,7 @@ export async function save(
     }
 
     const mnemonicKey = new MnemonicKey({ mnemonic });
-    
+
     const ciphertext = encrypt(
         JSON.stringify({
             privateKey: mnemonicKey.privateKey.toString(`hex`),
